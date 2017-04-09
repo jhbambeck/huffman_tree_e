@@ -48,7 +48,7 @@ void Bitcode_e::genEncoded()
     std::string b;
     int numBits = 0;
 
-    message >> c;
+    message.get(c);
     while(!message.eof())
     {
         standardize(c);
@@ -60,7 +60,7 @@ void Bitcode_e::genEncoded()
             }
         }
         printBinary(b, numBits, encoded);
-        message >> c;
+        message.get(c);
     }
     b = pairArray[29].bits;
     printBinary(b, numBits, encoded);
