@@ -46,7 +46,7 @@ void Bitcode_e::genEncoded()
 
     char c;
     std::string b;
-    int numBits;
+    int numBits = 0;
 
     message >> c;
     while(!message.eof())
@@ -62,6 +62,17 @@ void Bitcode_e::genEncoded()
         printBinary(b, numBits, encoded);
         message >> c;
     }
+    b = pairArray[29].bits;
+    printBinary(b, numBits, encoded);
+
+    char buff[1];
+    buff[0] = '0';
+    int numZeros = numBits % 8;
+    for(int i = 0; i < numZeros; i++)
+    {
+        encoded.write(buff, 1);
+    }
+
 }
 
 void Bitcode_e::printBinary(std::string bits, int& numBits, std::ofstream& encoded)
@@ -73,6 +84,7 @@ void Bitcode_e::printBinary(std::string bits, int& numBits, std::ofstream& encod
         buff[0] = bits.at(i);
         encoded.write(buff, 1);
     }
+    numBits += bits.length();
 }
 
 void Bitcode_e::standardize(char& c)
