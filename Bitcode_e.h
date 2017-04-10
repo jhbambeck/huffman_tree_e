@@ -16,9 +16,9 @@ public:
     CodePair pairArray[30];
 
     void input(char, std::string);
-    void populate();
+    void populate(std::ifstream&);
     void print();
-    void genEncoded();
+    void genEncoded(std::ifstream&, std::ofstream&);
     void standardize(char&);
     void printBinary(std::string, int&, std::ofstream&);
 };

@@ -7,15 +7,8 @@ void Bitcode_e::input(char c, std::string b)
     ++index;
 }
 
-void Bitcode_e::populate()
+void Bitcode_e::populate(std::ifstream& code)
 {
-    std::ifstream code;
-    code.open("basic_code");
-    if(!code)
-    {
-        std::cout << "Cannot open code file";
-    }
-
     for(int i = 0; i < 30; i++)
     {
         char c;
@@ -33,17 +26,8 @@ void Bitcode_e::print()
     }
 }
 
-void Bitcode_e::genEncoded()
+void Bitcode_e::genEncoded(std::ifstream& message, std::ofstream& encoded)
 {
-    std::ifstream message;
-    message.open("basic_message");
-    if(!message)
-    {
-        std::cout << "couldn't open message file";
-    }
-
-    std::ofstream encoded("basic_encoded.bin", std::ios::out | std::ios::binary);
-
     char c;
     std::string b;
     int numBits = 0;
