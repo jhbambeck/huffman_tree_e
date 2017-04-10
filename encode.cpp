@@ -4,14 +4,17 @@
 
 using namespace std;
 
-int main()
+int main(int argc, char* argv[])
 {
-    std::ifstream code("basic_code");
-    std::ifstream message("basic_message");
-    std::ofstream encoded("encoded.bin", std::ios::out | std::ios::binary);
+    if(argc != 4) std::cout << "Incorrect number of arguments.";
+    std::ifstream code(argv[1]);
+    if(!code) std::cout << "Cannot open frequency file";
+    std::ifstream message(argv[2]);
+    if(!message) std::cout << "Cannot open message file";
+    std::ofstream encoded(argv[3], std::ios::out | std::ios::binary);
+
     Bitcode_e bit;
     bit.populate(code);
-    bit.print();
     bit.genEncoded(message, encoded);
     return 0;
 }
